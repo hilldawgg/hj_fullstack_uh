@@ -1,1 +1,57 @@
 this is first submission
+
+// 0.4 new note
+
+on clicking save to input a new note:
+
+broswer -> server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+code on the server side interprets data submitted with the form in the body of the POST request, adding it to an array of notes
+
+server -> browser: 302 redirect -> https://fullstack-exampleapp.herokuapp.com/notes
+
+broswer -> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+server -> browser: HTML code
+
+broswer -> server: HTTP GEThttps://fullstack-exampleapp.herokuapp.com/main.css
+server -> browser: main.css
+
+broswer -> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+server -> browser: main.js
+
+browser runs js script -> sends request for JSON data from server 
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+browser renders notes to display
+
+
+
+//0.5 single-page app
+
+browser -> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+server -> browser: HTML code
+
+browser  loads HTML code and finds the css and js files, which require two more requests
+
+browser -> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+server -> browser: main.css
+browser -> server: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+server -> browser: spa.js
+
+spa.js sets up GET request and formatting instructions for content in data.json when the script is run
+
+browser -> server: HTTP GET data.json
+
+//0.6 new note
+
+on submitting new note
+
+browser -> server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+submission triggers event handler in spa.js to do the following:
+prevent the default form actions from occuring
+format the new note content as json data
+adds new note to the notes list as an item in the notes object array
+
